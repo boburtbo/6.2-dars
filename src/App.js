@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [images, setImages] = useState([]);
+
+  const addImage = () => {
+    setImages([...images, "image_url"]); // 'image_url' o'rniga qo'shmoqchi bo'lgan rasmingizning URL manzilini kiriting
+  };
+
+  const removeImage = () => {
+    setImages(images.slice(0, -1)); // Oxirgi rasmni olib tashlaydi
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={addImage}>+</button>
+      <button onClick={removeImage}>-</button>
+      <div>
+        {images.map((assets, index) => (
+          <img
+            key={index}
+            src="assets/aset.jpg"
+            width={300}
+            alt={`Rasm ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
